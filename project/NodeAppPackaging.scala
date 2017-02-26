@@ -18,7 +18,7 @@ import scalajsbundler.sbtplugin.ScalaJSBundlerPlugin.autoImport._
  * @see [[https://github.com/scalacenter/scalajs-bundler/blob/master/sbt-scalajs-bundler/src/main/scala/scalajsbundler/sbtplugin/ScalaJSBundlerPlugin.scala]]
  * @see [[https://github.com/scalacenter/scalajs-bundler/blob/master/sbt-scalajs-bundler/src/main/scala/scalajsbundler/PackageJson.scala]]
  */
-object NodePackagingPlugin extends AutoPlugin {
+object NodeAppPackaging extends AutoPlugin {
 
   override lazy val requires: Plugins = ScalaJSBundlerPlugin && UniversalPlugin
 

@@ -9,7 +9,7 @@ import com.typesafe.sbt.packager.universal.UniversalPlugin
 import scala.scalanative.sbtplugin.ScalaNativePlugin
 import scala.scalanative.sbtplugin.ScalaNativePlugin.AutoImport._
 
-object NativePackagingPlugin extends AutoPlugin {
+object NativeAppPackaging extends AutoPlugin {
 
   override lazy val requires = UniversalPlugin && ScalaNativePlugin
 

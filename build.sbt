@@ -1,7 +1,9 @@
 // shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
-import sbtcross.{crossProject, CrossType}
+import net.gutefrage.native.NativeAppPackaging
+import sbtcross.{CrossType, crossProject}
 
 val commonSettings = Seq(
+  organization := "net.gutefrage",
   scalaVersion := "2.11.8",
   // to resolve scala-native snapshot
   resolvers += Resolver.sonatypeRepo("snapshots")
@@ -17,7 +19,6 @@ lazy val shared =
     .settings(commonSettings)
     .jsSettings( /* ... */ ) // defined in sbt-scalajs-cross
     .jvmSettings( /* ... */ )
-    // (7) configure Scala-Native settings
     .nativeSettings( /* ... */ ) // defined in sbt-scala-native
 
 lazy val sharedJS = shared.js
@@ -35,7 +36,7 @@ lazy val jvmApp = project
 
 lazy val nodeApp = project
   .in(file("node-app"))
-  .enablePlugins(ScalaJSPlugin, NodePackagingPlugin)
+  .enablePlugins(ScalaJSPlugin, NodeAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "node-app",
@@ -47,7 +48,7 @@ lazy val nodeApp = project
 
 lazy val nativeApp = project
   .in(file("native-app"))
-  .enablePlugins(ScalaNativePlugin, NativePackagingPlugin)
+  .enablePlugins(ScalaNativePlugin, NativeAppPackaging)
   .settings(commonSettings)
   .settings(
     name := "native-app"
