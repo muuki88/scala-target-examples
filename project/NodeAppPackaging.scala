@@ -22,22 +22,22 @@ object NodeAppPackaging extends AutoPlugin {
 
   override lazy val requires: Plugins = ScalaJSBundlerPlugin && UniversalPlugin
 
-  private val generateNodeWebpackConfig: TaskKey[Unit] =
-    TaskKey[Unit]("generateNodeWebpackConfig", "generates the node.webpack.config.js")
+  private val generateNodeWebpackConfig: TaskKey[File] =
+    TaskKey[File]("generateNodeWebpackConfig", "generates the node.webpack.config.js")
 
   override def projectSettings: Seq[Setting[_]] = Seq(
     useYarn := true,
-    generateNodeWebpackConfig := writeNodeWebpackConfig((crossTarget in Compile).value),
+    webpackConfigFile in (Compile, fullOptJS) := Some((crossTarget in Compile).value / "node.webpack.config.js"),
+    generateNodeWebpackConfig := writeNodeWebpackConfig((webpackConfigFile in (Compile, fullOptJS)).value),
     (webpack in (Compile, fullOptJS)) := (webpack in (Compile, fullOptJS)).dependsOn(generateNodeWebpackConfig).value,
     mappings in Universal ++= {
       val webpackOutputs = (webpack in (Compile, fullOptJS)).value
       webpackOutputs.map(file => file -> file.getName)
-    },
-    webpackConfigFile in (Compile, fullOptJS) := Some((crossTarget in Compile).value / "node.webpack.config.js")
+    }
   )
 
-  private def writeNodeWebpackConfig(targetDir: File): Unit = {
-    val webpackConf = targetDir / "node.webpack.config.js"
+  private def writeNodeWebpackConfig(webpackConfigFile: Option[File]): File = {
+    val webpackConf = webpackConfigFile.getOrElse(sys.error("Custom webpack config is not set!"))
     IO.write(
       webpackConf,
       """|var webpack = require('webpack');
@@ -46,5 +46,6 @@ object NodeAppPackaging extends AutoPlugin {
         |module.exports.target = 'node';
         |""".stripMargin
     )
+    webpackConf
   }
 }
