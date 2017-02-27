@@ -1,5 +1,4 @@
 // shadow sbt-scalajs' crossProject and CrossType until Scala.js 1.0.0 is released
-import net.gutefrage.native.NativeAppPackaging
 import sbtcross.{CrossType, crossProject}
 
 val commonSettings = Seq(

@@ -1,5 +1,3 @@
-package net.gutefrage.native
-
 import sbt._
 import sbt.Keys._
 import com.typesafe.sbt.SbtNativePackager.Universal

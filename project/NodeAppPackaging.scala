@@ -1,5 +1,3 @@
-package net.gutefrage.node
-
 import com.typesafe.sbt.SbtNativePackager.Universal
 import com.typesafe.sbt.packager.universal.UniversalPlugin
 import sbt._
