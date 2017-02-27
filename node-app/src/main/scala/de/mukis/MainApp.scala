@@ -1,4 +1,4 @@
-package net.gutefrage
+package de.mukis
 
 import de.mukis.shared.GreetingService
 

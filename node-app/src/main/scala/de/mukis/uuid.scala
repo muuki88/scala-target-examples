@@ -1,4 +1,4 @@
-package net.gutefrage
+package de.mukis
 
 import scala.annotation.meta.field
 import scala.scalajs.js
