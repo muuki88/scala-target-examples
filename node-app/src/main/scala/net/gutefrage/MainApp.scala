@@ -7,12 +7,11 @@ import scala.scalajs.js
 object MainApp extends js.JSApp {
   def main(): Unit = {
     val greeter = new GreetingService("node")
-    greeter.sayHello("en")
-    greeter.sayHello("de")
+    greeter.sayHello()
 
     // demonstrate node module integration
-    println(s"hello world v4 ${uuid.v4()}")
-    println(s"hello world v1 ${uuid.v1()}")
+    println(s"uuid.v4(): ${uuid.v4()}")
+    println(s"uuid.v1(): ${uuid.v1()}")
   }
 
 }

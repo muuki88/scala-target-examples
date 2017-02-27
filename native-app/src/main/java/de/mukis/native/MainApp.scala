@@ -6,8 +6,10 @@ object MainApp {
 
   def main(args: Array[String]): Unit = {
     val greeter = new GreetingService("native")
-    greeter.sayHello("en")
-    greeter.sayHello("de")
-    args.foreach(println)
+    greeter.sayHello()
+
+    println("Arguments")
+    println(args.mkString(" "))
+    println()
   }
 }
