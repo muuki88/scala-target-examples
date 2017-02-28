@@ -1,4 +1,4 @@
-package de.mukis
+package de.mukis.js
 
 import de.mukis.shared.GreetingService
 

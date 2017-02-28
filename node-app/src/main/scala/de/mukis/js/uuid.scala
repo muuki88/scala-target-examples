@@ -1,4 +1,4 @@
-package de.mukis
+package de.mukis.js
 
 import scala.annotation.meta.field
 import scala.scalajs.js
