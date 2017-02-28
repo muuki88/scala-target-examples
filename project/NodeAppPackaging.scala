@@ -25,9 +25,12 @@ object NodeAppPackaging extends AutoPlugin {
 
   override def projectSettings: Seq[Setting[_]] = Seq(
     useYarn := true,
+    // Custom webpack configuration
     webpackConfigFile in (Compile, fullOptJS) := Some((crossTarget in Compile).value / "node.webpack.config.js"),
     generateNodeWebpackConfig := writeNodeWebpackConfig((webpackConfigFile in (Compile, fullOptJS)).value),
+    // Create webpack configuration on bundle generation
     (webpack in (Compile, fullOptJS)) := (webpack in (Compile, fullOptJS)).dependsOn(generateNodeWebpackConfig).value,
+    // Add the resulting bundles to the mappings
     mappings in Universal ++= {
       val webpackOutputs = (webpack in (Compile, fullOptJS)).value
       webpackOutputs.map(file => file -> file.getName)

@@ -14,7 +14,7 @@ import scala.scalanative.sbtplugin.ScalaNativePlugin.AutoImport._
  */
 object NativeAppPackaging extends AutoPlugin {
 
-  override lazy val requires = ScalaNativePlugin && UniversalPlugin
+  override lazy val requires: Plugins = ScalaNativePlugin && UniversalPlugin
 
   override lazy val projectSettings: Seq[Setting[_]] = Seq(
     mappings in Universal += {
